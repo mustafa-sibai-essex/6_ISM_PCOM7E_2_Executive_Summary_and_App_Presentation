@@ -1,5 +1,6 @@
 import tkinter as tk
 from deleteUI import DeleteUI
+from graphFactory import GraphFactory
 from menubar import MenuBar
 from mainUI import MainUI
 from nodeFactory import NodeFactory
@@ -17,11 +18,10 @@ main_frame.pack(side="left", anchor="sw")
 delete_frame = tk.Frame(window, pady=0)
 delete_frame.pack(side="left", anchor="sw")
 
+graph_factory = GraphFactory()
 
-node_factory = NodeFactory()
-
-menu_bar = MenuBar(window)
-main_ui = MainUI(main_frame, graph_frame, node_factory)
-delete_ui = DeleteUI(delete_frame, main_ui, node_factory)
+main_ui = MainUI(main_frame, graph_frame, graph_factory)
+menu_bar = MenuBar(window, main_ui, graph_factory)
+delete_ui = DeleteUI(delete_frame, main_ui, graph_factory.node_factory)
 
 window.mainloop()

@@ -1,0 +1,20 @@
+{
+    "name": "a",
+    "node_type": "AND",
+    "value": 5,
+    "children": [
+        {
+            "name": "b",
+            "node_type": "OR",
+            "value": 3,
+            "children": [
+                {
+                    "name": "c",
+                    "node_type": "AND",
+                    "value": 2,
+                    "children": []
+                }
+            ]
+        }
+    ]
+}

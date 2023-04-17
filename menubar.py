@@ -2,11 +2,18 @@ import tkinter as tk
 from tkinter import filedialog
 import os
 from shutil import copy
+import json
+from graphFactory import GraphFactory
+from node import Node
+from nodeFactory import NodeFactory
 
 
 class MenuBar:
-    def __init__(self, window):
+    def __init__(self, window, main_ui, graph_factory):
         self.menu_bar = tk.Menu(window)
+        self.main_ui = main_ui
+        self.graph_factory = graph_factory
+
         self.file_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.about_menu = tk.Menu(self.menu_bar, tearoff=0)
 
@@ -30,7 +37,26 @@ class MenuBar:
     def add_about_menu(self):
         self.menu_bar.add_command(label="About", command=self.do_about)
 
+    def read_json_file(self, file_path):
+        with open(file_path) as f:
+            data = json.load(f)
+
+        self.graph_factory.clear_graph()
+
+        def create_nodes(data, parent_name=None):
+            name = data["name"]
+            node_type = data["node_type"]
+            value = data["value"]
+            self.graph_factory.add_node(name, parent_name, node_type, value)
+
+            for child_data in data["children"]:
+                create_nodes(child_data, name)
+
+        create_nodes(data)
+        self.main_ui.display_nodes()
+
     def import_from_file(self):
+        self.read_json_file("./data.json")
         print("Import From File")
 
     def do_about(self):

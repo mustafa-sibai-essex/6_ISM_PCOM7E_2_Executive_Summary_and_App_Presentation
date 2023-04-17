@@ -4,11 +4,10 @@ from graphviz import Digraph
 
 
 class MainUI:
-    def __init__(self, main_ui_container, graph_container, node_factory):
+    def __init__(self, main_ui_container, graph_container, graph_factory):
         self.main_ui_container = main_ui_container
         self.graph_container = graph_container
-        self.node_factory = node_factory
-        self.graph = Digraph(comment="Node Tree")
+        self.graph_factory = graph_factory
 
         frame = tk.Frame(self.main_ui_container)
         frame.pack(side="top", anchor="w", pady=5)
@@ -55,30 +54,13 @@ class MainUI:
         )
         self.add_node_button.pack(side="left", anchor="w", padx=10)
 
-        self.graph = Digraph(comment="Node Tree")
-
     def add_node(self):
         node_name = self.node_name_entry.get()
         node_parent = self.node_parent_entry.get()
         node_type = self.node_type_var.get()
         node_value = self.node_value_entry.get()
 
-        if not node_name:
-            print("Error: Node name cannot be empty.")
-            return
-
-        if not node_parent and self.node_factory.nodes:
-            print(
-                "You cannot create more than one parent nodes. This node should have a parent name. Please fill in the parent node name."
-            )
-            return
-
-        node = self.node_factory.create_node(
-            node_name, node_parent, node_type, node_value
-        )
-
-        if not node:
-            return
+        self.graph_factory.add_node(node_name, node_parent, node_type, node_value)
 
         self.node_name_entry.delete(0, tk.END)
         self.node_parent_entry.delete(0, tk.END)
@@ -86,15 +68,7 @@ class MainUI:
         self.display_nodes()
 
     def display_nodes(self):
-        self.graph.clear()
-        for node in self.node_factory.get_nodes():
-            self.graph.node(node.name, label=node.name)
-
-            if node.parent:
-                self.graph.edge(node.parent, node.name)
-
-        self.graph.format = "png"
-        self.graph.render("graph", directory="./output/", view=False)
+        self.graph_factory.create_graph()
 
         if hasattr(self, "graph_view"):
             self.graph_view.destroy()

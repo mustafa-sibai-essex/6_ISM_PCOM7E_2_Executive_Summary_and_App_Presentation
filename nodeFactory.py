@@ -5,6 +5,9 @@ class NodeFactory:
     def __init__(self):
         self.nodes = {}
 
+    def clear(self):
+        self.nodes = {}
+
     def create_node(self, name, parent_name=None, node_type="Or", value=None):
         if parent_name and parent_name not in self.nodes:
             print(f"Error: Parent node '{parent_name}' not found.")
