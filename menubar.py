@@ -7,7 +7,9 @@ class MenuBar:
         self.about_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.add_file_menu()
         self.add_about_menu()
-        
+
+        window.config(menu=self.menu_bar)
+
     def add_file_menu(self):
         self.menu_bar.add_cascade(label="File", menu=self.file_menu)
         self.file_menu.add_command(label="Import From File", command=self.import_from_file)
