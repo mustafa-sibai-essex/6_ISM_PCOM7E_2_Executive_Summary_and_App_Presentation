@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 
 class DeleteUI:
@@ -27,7 +28,7 @@ class DeleteUI:
         node_to_delete = self.node_delete_entry.get()
 
         if not node_to_delete:
-            print("Error: Node name cannot be empty.")
+            messagebox.showerror("Error", "Node name cannot be empty.")
             return
 
         self.node_factory.delete_node(node_to_delete)

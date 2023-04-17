@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from graphviz import Digraph
 
 
 class MainUI:
@@ -20,6 +19,14 @@ class MainUI:
         frame = tk.Frame(self.main_ui_container)
         frame.pack(side="top", anchor="w", pady=5)
 
+        self.node_description_label = tk.Label(frame, text="Node Description:")
+        self.node_description_label.pack(side="left", anchor="w", padx=10)
+        self.node_description_entry = tk.Entry(frame)
+        self.node_description_entry.pack(side="left", anchor="w", padx=16)
+
+        frame = tk.Frame(self.main_ui_container)
+        frame.pack(side="top", anchor="w", pady=5)
+
         self.node_parent_label = tk.Label(frame, text="Node Parent:")
         self.node_parent_label.pack(side="left", anchor="w", padx=10)
         self.node_parent_entry = tk.Entry(frame)
@@ -27,16 +34,6 @@ class MainUI:
 
         frame = tk.Frame(self.main_ui_container)
         frame.pack(side="top", anchor="w", pady=5)
-
-        self.node_type_label = tk.Label(frame, text="Node Type:")
-        self.node_type_label.pack(side="left", anchor="w", padx=10)
-        self.node_type_var = tk.StringVar(frame)
-        self.node_type_var.set("Or")  # Set default option
-        self.node_type_dropdown = ttk.Combobox(
-            frame, textvariable=self.node_type_var, values=["Or", "And"], width=17
-        )
-        self.node_type_dropdown.pack(side="left", anchor="w", padx=22)
-        self.node_type_dropdown.config(state="readonly")
 
         frame = tk.Frame(self.main_ui_container)
         frame.pack(side="top", anchor="w", pady=5)
@@ -56,19 +53,23 @@ class MainUI:
 
     def add_node(self):
         node_name = self.node_name_entry.get()
+        node_description = self.node_description_entry.get()
         node_parent = self.node_parent_entry.get()
-        node_type = self.node_type_var.get()
         node_value = self.node_value_entry.get()
 
-        self.graph_factory.add_node(node_name, node_parent, node_type, node_value)
+        node = self.graph_factory.add_node(
+            node_name, node_description, node_parent, node_value
+        )
 
-        self.node_name_entry.delete(0, tk.END)
-        self.node_parent_entry.delete(0, tk.END)
-        self.node_value_entry.delete(0, tk.END)
-        self.display_nodes()
+        if node:
+            self.node_name_entry.delete(0, tk.END)
+            self.node_description_entry.delete(0, tk.END)
+            self.node_parent_entry.delete(0, tk.END)
+            self.node_value_entry.delete(0, tk.END)
+            self.display_nodes()
 
-    def display_nodes(self):
-        self.graph_factory.create_graph()
+    def display_nodes(self, node_names=set()):
+        self.graph_factory.create_graph(node_names)
 
         if hasattr(self, "graph_view"):
             self.graph_view.destroy()

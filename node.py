@@ -1,13 +1,8 @@
-import tkinter as tk
-from tkinter import ttk
-from graphviz import Digraph
-
-
 class Node:
-    def __init__(self, name, parent=None, node_type="Or", value=None):
+    def __init__(self, name, description, parent=None, value=None):
         self.name = name
+        self.description = description
         self.parent = parent
-        self.node_type = node_type
         self.value = value
         self.children = []
 

@@ -1,16 +1,16 @@
 {
     "name": "a",
-    "node_type": "AND",
-    "value": 5,
+    "description": "Open Safe",
+    "value": 0,
     "children": [
         {
             "name": "b",
-            "node_type": "OR",
+            "description": "Drill Safe",
             "value": 3,
             "children": [
                 {
                     "name": "c",
-                    "node_type": "AND",
+                    "description": "Buy Drill",
                     "value": 2,
                     "children": []
                 }

@@ -1,3 +1,4 @@
+from tkinter import messagebox
 from node import Node
 
 
@@ -8,16 +9,16 @@ class NodeFactory:
     def clear(self):
         self.nodes = {}
 
-    def create_node(self, name, parent_name=None, node_type="Or", value=None):
+    def create_node(self, name, description, parent_name=None, value=None):
         if parent_name and parent_name not in self.nodes:
-            print(f"Error: Parent node '{parent_name}' not found.")
+            messagebox.showerror("Error", f"Parent node '{parent_name}' not found.")
             return None
 
         if name in self.nodes:
-            print(f"Error: Node '{name}' already exists.")
+            messagebox.showerror("Error", f"Node '{name}' already exists.")
             return None
 
-        node = Node(name, parent_name, node_type, value)
+        node = Node(name, description, parent_name, value)
         self.nodes[name] = node
 
         if parent_name:
@@ -28,7 +29,7 @@ class NodeFactory:
 
     def delete_node(self, name):
         if name not in self.nodes:
-            print(f"Error: Node '{name}' not found.")
+            messagebox.showerror("Error", f"Node '{name}' not found.")
             return
 
         def remove_node(node):
@@ -43,3 +44,10 @@ class NodeFactory:
 
     def get_nodes(self):
         return list(self.nodes.values())
+
+    def get_node_by_name(self, name):
+        if name in self.nodes:
+            return self.nodes[name]
+        else:
+            messagebox.showerror("Error", f"Node '{name}' not found.")
+            return None

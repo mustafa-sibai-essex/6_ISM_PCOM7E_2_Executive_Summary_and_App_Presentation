@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node name="e" node_type="AND" value="5">
-    <node name="f" node_type="OR" value="3">
-        <node name="g" node_type="AND" value="2"/>
+<node name="e" description ="Open Safe" value="0">
+    <node name="f" description ="Drill Safe" value="3">
+        <node name="g" description ="Buy Drill" value="2"/>
     </node>
 </node>

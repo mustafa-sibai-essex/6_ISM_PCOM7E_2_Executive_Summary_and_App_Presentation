@@ -1,11 +1,9 @@
 import tkinter as tk
 from tkinter import filedialog
-import os
 from shutil import copy
+import os
 import json
-from graphFactory import GraphFactory
-from node import Node
-from nodeFactory import NodeFactory
+from tkinter import messagebox
 import xml.etree.ElementTree as ET
 
 
@@ -30,10 +28,7 @@ class MenuBar:
         )
         export_menu = tk.Menu(self.file_menu, tearoff=0)
         self.file_menu.add_cascade(label="Export As", menu=export_menu)
-        export_menu.add_command(label="XML", command=self.export_to_xml)
-        export_menu.add_command(label="JSON", command=self.export_to_json)
         export_menu.add_command(label="PNG", command=self.export_to_png)
-        export_menu.add_command(label="PDF", command=self.export_to_pdf)
 
     def add_about_menu(self):
         self.menu_bar.add_command(label="About", command=self.do_about)
@@ -46,9 +41,9 @@ class MenuBar:
 
         def create_nodes(node, parent_name=None):
             name = node.get("name")
-            node_type = node.get("node_type")
+            description = node.get("description")
             value = node.get("value")
-            self.graph_factory.add_node(name, parent_name, node_type, value)
+            self.graph_factory.add_node(name, description, parent_name, value)
 
             for child_node in node:
                 create_nodes(child_node, name)
@@ -64,9 +59,9 @@ class MenuBar:
 
         def create_nodes(data, parent_name=None):
             name = data["name"]
-            node_type = data["node_type"]
+            description = data["description"]
             value = data["value"]
-            self.graph_factory.add_node(name, parent_name, node_type, value)
+            self.graph_factory.add_node(name, description, parent_name, value)
 
             for child_data in data["children"]:
                 create_nodes(child_data, name)
@@ -89,13 +84,10 @@ class MenuBar:
             print("Unsupported file type")
 
     def do_about(self):
-        print("About")
-
-    def export_to_xml(self):
-        print("Exporting to XML")
-
-    def export_to_json(self):
-        print("Exporting to JSON")
+        messagebox.showinfo(
+            "Information Security Management March 2023",
+            "Attack tree generator application created by Mustafa Sibai",
+        )
 
     def export_to_png(self):
         file_path = filedialog.asksaveasfilename(
@@ -104,6 +96,3 @@ class MenuBar:
         if file_path:
             output_file = os.path.join(os.getcwd(), "./output", "graph.png")
             copy(output_file, file_path)
-
-    def export_to_pdf(self):
-        print("Exporting to PDF")
