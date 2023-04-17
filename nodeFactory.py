@@ -23,5 +23,20 @@ class NodeFactory:
 
         return node
 
+    def delete_node(self, name):
+        if name not in self.nodes:
+            print(f"Error: Node '{name}' not found.")
+            return
+
+        def remove_node(node):
+            for child in node.children:
+                remove_node(child)
+                if child.name in self.nodes:
+                    del self.nodes[child.name]
+            if node.name in self.nodes:
+                del self.nodes[node.name]
+
+        remove_node(self.nodes[name])
+
     def get_nodes(self):
         return list(self.nodes.values())

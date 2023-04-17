@@ -2,8 +2,9 @@ import tkinter as tk
 
 
 class DeleteUI:
-    def __init__(self, delete_ui_container):
+    def __init__(self, delete_ui_container, main_ui):
         self.delete_ui_container = delete_ui_container
+        self.main_ui = main_ui
 
         frame = tk.Frame(self.delete_ui_container)
         frame.pack(side="top", anchor="e", pady=5)
@@ -24,4 +25,9 @@ class DeleteUI:
     def delete_node(self):
         node_to_delete = self.node_delete_entry.get()
 
-        print("Node to delete:", node_to_delete)
+        if not node_to_delete:
+            print("Error: Node name cannot be empty.")
+            return
+
+        self.main_ui.node_factory.delete_node(node_to_delete)
+        self.main_ui.display_nodes()

@@ -19,6 +19,6 @@ delete_frame.pack(side="left", anchor="sw")
 
 menu_bar = MenuBar(window)
 main_ui = MainUI(main_frame, graph_frame)
-delete_ui = DeleteUI(delete_frame)
+delete_ui = DeleteUI(delete_frame, main_ui)
 
 window.mainloop()
