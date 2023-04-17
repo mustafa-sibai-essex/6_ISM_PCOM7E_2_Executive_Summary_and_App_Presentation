@@ -6,6 +6,7 @@ import json
 from graphFactory import GraphFactory
 from node import Node
 from nodeFactory import NodeFactory
+import xml.etree.ElementTree as ET
 
 
 class MenuBar:
@@ -37,6 +38,24 @@ class MenuBar:
     def add_about_menu(self):
         self.menu_bar.add_command(label="About", command=self.do_about)
 
+    def read_xml_file(self, file_path):
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+
+        self.graph_factory.clear_graph()
+
+        def create_nodes(node, parent_name=None):
+            name = node.get("name")
+            node_type = node.get("node_type")
+            value = node.get("value")
+            self.graph_factory.add_node(name, parent_name, node_type, value)
+
+            for child_node in node:
+                create_nodes(child_node, name)
+
+        create_nodes(root)
+        self.main_ui.display_nodes()
+
     def read_json_file(self, file_path):
         with open(file_path) as f:
             data = json.load(f)
@@ -56,8 +75,18 @@ class MenuBar:
         self.main_ui.display_nodes()
 
     def import_from_file(self):
-        self.read_json_file("./data.json")
-        print("Import From File")
+        file_path = filedialog.askopenfilename(
+            filetypes=[("XML files", "*.xml"), ("JSON files", "*.json")]
+        )
+        if not file_path:
+            return
+
+        if file_path.endswith(".json"):
+            self.read_json_file(file_path)
+        elif file_path.endswith(".xml"):
+            self.read_xml_file(file_path)
+        else:
+            print("Unsupported file type")
 
     def do_about(self):
         print("About")

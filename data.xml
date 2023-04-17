@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="e" node_type="AND" value="5">
+    <node name="f" node_type="OR" value="3">
+        <node name="g" node_type="AND" value="2"/>
+    </node>
+</node>
