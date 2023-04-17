@@ -22,7 +22,7 @@ class MainUI:
         self.node_name_label = tk.Label(frame, text="Node Name:")
         self.node_name_label.pack(side="left", anchor="w", padx=10)
         self.node_name_entry = tk.Entry(frame)
-        self.node_name_entry.pack(side="left", anchor="w", padx=16)
+        self.node_name_entry.pack(side="left", anchor="w", padx=28)
 
         # Create a frame and pack it to the top of the main window container with a 5 pixel vertical padding
         frame = tk.Frame(self.main_ui_container)
@@ -32,7 +32,7 @@ class MainUI:
         self.node_description_label = tk.Label(frame, text="Node Description:")
         self.node_description_label.pack(side="left", anchor="w", padx=10)
         self.node_description_entry = tk.Entry(frame)
-        self.node_description_entry.pack(side="left", anchor="w", padx=16)
+        self.node_description_entry.pack(side="left", anchor="w", padx=0)
 
         # Create a frame and pack it to the top of the main window container with a 5 pixel vertical padding
         frame = tk.Frame(self.main_ui_container)
@@ -42,7 +42,7 @@ class MainUI:
         self.node_parent_label = tk.Label(frame, text="Node Parent:")
         self.node_parent_label.pack(side="left", anchor="w", padx=10)
         self.node_parent_entry = tk.Entry(frame)
-        self.node_parent_entry.pack(side="left", anchor="w", padx=10)
+        self.node_parent_entry.pack(side="left", anchor="w", padx=25)
 
         # Create a frame and pack it to the top of the main window container with a 5 pixel vertical padding
         frame = tk.Frame(self.main_ui_container)
@@ -52,7 +52,7 @@ class MainUI:
         self.node_value_label = tk.Label(frame, text="Node Value:")
         self.node_value_label.pack(side="left", anchor="w", padx=10)
         self.node_value_entry = tk.Entry(frame)
-        self.node_value_entry.pack(side="left", anchor="w", padx=16)
+        self.node_value_entry.pack(side="left", anchor="w", padx=29)
 
         # Create a frame and pack it to the top of the main window container with a 5 pixel vertical padding
         frame = tk.Frame(self.main_ui_container)
@@ -60,7 +60,7 @@ class MainUI:
 
         # Create a button for adding a node, pack it to the left of the frame
         self.add_node_button = tk.Button(
-            frame, text="Add Node", command=self.add_node, width=30
+            frame, text="Add Node", command=self.add_node, width=33
         )
         self.add_node_button.pack(side="left", anchor="w", padx=10)
 
@@ -85,6 +85,14 @@ class MainUI:
             self.node_parent_entry.delete(0, tk.END)
             self.node_value_entry.delete(0, tk.END)
             self.display_nodes()
+
+    def clear_graph_UI(self):
+        """This method checks if there anything rendered in the graph_view.
+        If there is it clears both the graph and graph_factory"""
+
+        if hasattr(self, "graph_view"):
+            self.graph_factory.clear_graph()
+            self.graph_view.destroy()
 
     def display_nodes(self, node_names=set()):
         """This method displays the graph and take in node_names as an input.

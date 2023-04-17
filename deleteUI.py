@@ -33,6 +33,15 @@ class DeleteUI:
         )
         self.delete_node_button.pack(side="left", anchor="w", padx=0)
 
+        frame = tk.Frame(self.delete_ui_container)
+        frame.pack(side="top", anchor="w", pady=5)
+
+        # Add the Delete Node button to the frame
+        self.clear_graph_button = tk.Button(
+            frame, text="Clear graph", command=self.main_ui.clear_graph_UI, width=30
+        )
+        self.clear_graph_button.pack(side="left", anchor="w", padx=0)
+
     def delete_node(self):
         """This function result in a node being deleted from the node factory class"""
 

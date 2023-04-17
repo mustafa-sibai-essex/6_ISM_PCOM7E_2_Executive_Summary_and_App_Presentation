@@ -13,17 +13,18 @@ class CalculateAttackValueUI:
 
         # Create a new frame to hold the UI elements
         frame = tk.Frame(self.calculate_attack_value_ui_container)
-        frame.pack(side="top", anchor="e", pady=5)
+        frame.pack(side="top", anchor="w", pady=0)
 
         self.note_label = tk.Label(
             frame,
             text="***Input must be the nodes name seperated with commas***\nexample a,b,c",
+            justify="left",
         )
         self.note_label.pack(side="left", anchor="e", padx=0)
 
         # Create a new frame to hold the UI elements
         frame = tk.Frame(self.calculate_attack_value_ui_container)
-        frame.pack(side="top", anchor="e", pady=5)
+        frame.pack(side="top", anchor="w", pady=5)
 
         # Create a label for the first node to calculate
         self.nodes_label = tk.Label(frame, text="Node to Calculate:")
@@ -40,7 +41,7 @@ class CalculateAttackValueUI:
             frame,
             text="Calculate Nodes Attack Value",
             command=self.calculate_nodes_attack_value,
-            width=50,
+            width=40,
         )
         self.calculate_value_of_nodes_button.pack(side="left", anchor="w", padx=0)
 
