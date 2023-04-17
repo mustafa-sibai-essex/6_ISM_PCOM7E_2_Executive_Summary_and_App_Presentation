@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 from graphviz import Digraph
-from nodeFactory import NodeFactory
 
 
 class MainUI:
@@ -9,6 +8,7 @@ class MainUI:
         self.main_ui_container = main_ui_container
         self.graph_container = graph_container
         self.node_factory = node_factory
+        self.graph = Digraph(comment="Node Tree")
 
         frame = tk.Frame(self.main_ui_container)
         frame.pack(side="top", anchor="w", pady=5)
@@ -94,12 +94,12 @@ class MainUI:
                 self.graph.edge(node.parent, node.name)
 
         self.graph.format = "png"
-        self.graph.render("graph", view=False)
+        self.graph.render("graph", directory="./output/", view=False)
 
         if hasattr(self, "graph_view"):
             self.graph_view.destroy()
 
         self.graph_view = tk.Label(self.graph_container)
         self.graph_view.pack(side="top", anchor="w", pady=5)
-        self.graph_view.img = tk.PhotoImage(file="graph.png")
+        self.graph_view.img = tk.PhotoImage(file="./output/graph.png")
         self.graph_view.config(image=self.graph_view.img)
