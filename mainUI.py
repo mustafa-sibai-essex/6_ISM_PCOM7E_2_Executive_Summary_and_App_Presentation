@@ -5,13 +5,10 @@ from nodeFactory import NodeFactory
 
 
 class MainUI:
-    def __init__(self, main_ui_container, graph_container):
-        self.node_factory = NodeFactory()
+    def __init__(self, main_ui_container, graph_container, node_factory):
         self.main_ui_container = main_ui_container
         self.graph_container = graph_container
-
-        # self.container = tk.Frame(main_ui_container, pady=0, bg="black")
-        # self.container.pack(side="left", anchor="sw", fill="y")
+        self.node_factory = node_factory
 
         frame = tk.Frame(self.main_ui_container)
         frame.pack(side="top", anchor="w", pady=5)
@@ -89,20 +86,16 @@ class MainUI:
         self.display_nodes()
 
     def display_nodes(self):
-        self.graph.clear()  # Clear the graph
+        self.graph.clear()
         for node in self.node_factory.get_nodes():
-            # Add the node to the graph
             self.graph.node(node.name, label=node.name)
 
-            # Add the edge to the parent node, if it exists
             if node.parent:
                 self.graph.edge(node.parent, node.name)
 
-        # Render the graph and display it in a tkinter main_ui_container
         self.graph.format = "png"
         self.graph.render("graph", view=False)
 
-        # Clear the previous graph view
         if hasattr(self, "graph_view"):
             self.graph_view.destroy()
 
