@@ -27,9 +27,17 @@ class GraphFactory:
             messagebox.showerror("Error", "Node description cannot be empty.")
             return
 
-        if not node_value and node_parent != "":
-            messagebox.showerror("Error", "Node value cannot be empty.")
-            return
+        if node_parent != "" and node_parent != None:
+            if not node_value:
+                messagebox.showerror("Error", "Node value cannot be empty.")
+                return
+
+            try:
+                # try to parse the string to an integer
+                node_value = int(node_value)
+            except ValueError:
+                messagebox.showerror("Error", "Node value has to be an integer.")
+                return
 
         if not node_parent and self.node_factory.nodes:
             messagebox.showerror(
