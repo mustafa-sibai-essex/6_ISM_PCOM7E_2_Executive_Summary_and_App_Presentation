@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<node name="e" description ="Open Safe" value="0">
-    <node name="f" description ="Drill Safe" value="3">
-        <node name="g" description ="Buy Drill" value="2"/>
+<node name="A1" description="Open Safe" value="0">
+    <node name="A2" description="Drill Safe" value="5">
+        <node name="A3" description="Buy Drill" value="3"/>
+        <node name="A4" description="Steal Drill" value="4"/>
     </node>
 </node>

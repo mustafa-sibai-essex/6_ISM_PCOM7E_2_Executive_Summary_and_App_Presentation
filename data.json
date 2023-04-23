@@ -1,17 +1,23 @@
 {
-    "name": "a",
+    "name": "A1",
     "description": "Open Safe",
     "value": 0,
     "children": [
         {
-            "name": "b",
+            "name": "A2",
             "description": "Drill Safe",
-            "value": 3,
+            "value": 5,
             "children": [
                 {
-                    "name": "c",
+                    "name": "A3",
                     "description": "Buy Drill",
-                    "value": 2,
+                    "value": 3,
+                    "children": []
+                },
+                {
+                    "name": "A4",
+                    "description": "Steal Drill",
+                    "value": 4,
                     "children": []
                 }
             ]
