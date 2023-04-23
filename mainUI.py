@@ -73,6 +73,9 @@ class MainUI:
         node_parent = self.node_parent_entry.get()
         node_value = self.node_value_entry.get()
 
+        if node_parent == "":
+            node_parent = None
+
         # Create a new node using the GraphFactory and the values of the attributes
         node = self.graph_factory.add_node(
             node_name, node_description, node_parent, node_value
