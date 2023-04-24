@@ -1,0 +1,36 @@
+<node name="A1" description="Pre-digitized Pampered Pets" value="0">
+
+    <node name="A2" description="Spoofing" value="0">
+        <node name="A2-1" description="Unauthorized Access" value="2"/>
+        <node name="A2-2" description="Brute Force" value="8"/>
+    </node>
+
+    <node name="A3" description="Tampering" value="0">
+        <node name="A3-1" description="Malware" value="2"/>
+        <node name="A3-2" description="Hard drive wipe" value="0"/>
+    </node>
+
+    <node name="A4" description="Repudiation" value="0">
+        <node name="A4-1" description="Employee Error" value="0"/>
+        <node name="A4-2" description="Backup failer" value="0"/>
+        <node name="A4-3" description="Legal disputes and loss of trust" value="5"/>
+    </node>
+
+    <node name="A5" description="Information Disclosure" value="0">
+        <node name="A5-1" description="Supply Chain Disruption" value="8"/>
+        <node name="A5-2" description="Phishing" value="8"/>
+        <node name="A5-3" description="Network Packet Sniffing" value="8"/>
+        <node name="A5-4" description="Theft of sensitive information" value="8"/>
+    </node>
+
+    <node name="A6" description="Denial of Service" value="0">
+        <node name="A6-1" description="Equipment Failure" value="2"/>
+        <node name="A6-2" description="Natural Disaster" value="2"/>
+        <node name="A6-3" description="Network Denial of Service" value="8"/>
+    </node>
+
+    <node name="A7" description="Elevation of Privilege" value="0">
+        <node name="A7-1" description="Unauthorized Access" value="2"/>
+        <node name="A7-2" description="Account creation" value="5"/>
+    </node>
+</node>
