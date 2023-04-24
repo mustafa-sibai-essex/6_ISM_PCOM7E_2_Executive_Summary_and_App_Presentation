@@ -22,6 +22,11 @@ The application is written in Python using graphviz for display graphs and tkint
   - [XML file format](#xml-file-format)
   - [JSON file format](#json-file-format)
 - [Tests](#tests)
+- [Pampered-Pets Risk Assessment](#pampered-pets-risk-assessment)
+  - [Risk rating table](#risk-rating-table)
+  - [Pre digitized Pampered-Pets graph](#pre-digitized-pampered-pets-graph)
+  - [Post digitized Pampered-Pets graph](#post-digitized-pampered-pets-graph)
+  - [Consultation](#consultation)
 - [License](#license)
 - [References](#references)
 
@@ -160,6 +165,40 @@ To run the unit tests execute the following command in the terminal
 python3 unittest.test.py
 ~~~
 
+
+# Pampered-Pets Risk Assessment
+
+## Risk rating table
+
+| Scale                                 | Value         |
+| ------------------------------------- |:-------------:|
+| Very high                             | 10            |
+| High                                  | 8             |
+| Moderate                              | 5             |
+| Low                                   | 2             |
+| Very low                              | 0             |
+
+
+## Pre digitized Pampered-Pets graph
+<img src="static/Pre-digitized-Pampered-Pets.png" width="auto" height="auto">
+
+The below string can be pasted into the "Node To Calculate" textbox in the application after loading the XML file and pressing the "Calculate Nodes Attack Value" button to calculate the likelihood of all attacks happening.
+
+A1,A2,A2-1,A2-2,A3,A3-1,A3-2,A4,A4-1,A4-2,A5,A5-1,A5-2,A5-3,A6,A6-1,A6-2,A7,A7-1
+
+<br>
+
+## Post digitized Pampered-Pets graph
+<img src="static/Post-digitized-Pampered-Pets.png" width="auto" height="auto">
+
+The below string can be pasted into the "Node To Calculate" textbox in the application after loading the XML file and pressing the "Calculate Nodes Attack Value" button to calculate the likelihood of all attacks happening.
+
+A1,A2,A2-1,A2-2,A3,A3-1,A3-2,A4,A4-1,A4-2,A4-3,A5,A5-1,A5-2,A5-3,A5-4,A6,A6-1,A6-2,A6-3,A7,A7-1,A7-2
+
+
+## Consultation
+
+As you can clearly see, the overall risk score is high post-digitisation, while pre digitisation risk score is lower. This is because creating an online platform allows hackers and attackers to disrupt business operations.
 
 ## License
 
