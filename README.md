@@ -104,7 +104,7 @@ To export the graph created to a png file, following the below steps
 ### Supported File formats
 
 ## XML file format
-The application supports importing a graph through XML file format. The file format looks as follows:
+The application supports importing a graph through XML (World Wide Web Consortium (W3C), 2008) file format. The file format looks as follows:
 ~~~
 <node name="A1" description="Open Safe" value="0">
     <node name="A2" description="Drill Safe" value="5">
@@ -119,7 +119,7 @@ The application supports importing a graph through XML file format. The file for
 
 
 ## JSON file format
-The application supports importing a graph through JSON file format. The file format looks as follows:
+The application supports importing a graph through JSON (JSON.org, 2021) file format. The file format looks as follows:
 ~~~
 {
     "name": "A1",
@@ -153,6 +153,13 @@ The application supports importing a graph through JSON file format. The file fo
 2. As discussed previously, the root node has no value. However, the child nodes must contain a value.
 
 ## Tests
+For unit tests I am using the built in unittest framework (Python Software Foundation, 2021).
+To run the unit tests execute the following command in the terminal
+
+~~~
+python3 unittest.test.py
+~~~
+
 
 ## License
 
@@ -172,4 +179,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 
 Graphviz (2023) Graphviz. Available at: https://graphviz.org/ (Accessed: April 16, 2023). 
 
-Tkinter - Python interface to TCL/TK (no date) Python documentation. Available at: https://docs.python.org/3/library/tkinter.html (Accessed: April 16, 2023). 
+Tkinter - Python interface to TCL/TK (no date) Python documentation. Available at: https://docs.python.org/3/library/tkinter.html (Accessed: April 16, 2023).
+
+World Wide Web Consortium (W3C). (2008). Extensible Markup Language (XML) 1.0 (Fifth Edition). W3C. https://www.w3.org/TR/REC-xml/
+
+JSON.org. (2021). JSON: JavaScript Object Notation. http://json.org/
+
+Python Software Foundation. (2021). unittest — Unit testing framework. Python Software Foundation. https://docs.python.org/3/library/unittest.html
